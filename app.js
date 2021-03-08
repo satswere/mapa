@@ -1,12 +1,37 @@
-var items = [];
-const valor_x = 3;
-const valor_y = 5;
+eventListeners();
+function eventListeners() {
+  document.querySelector("#enviar").addEventListener("click", datos);
+}
+
+var items = []; //variables globles
+let valor_x = 0;
+let valor_y = 0;
 let y = 0;
 let x = 0;
 let last_color = " ";
 let color = " ";
-other_color = " ";
-llenado();
+let other_color = " ";
+
+function datos() {
+  limpiar(); // limpiar
+  valor_x = document.querySelector("#valor_x").value;
+  valor_y = document.querySelector("#valor_y").value;
+  //console.log("entro a la funcion");
+
+  llenado();
+  console.table(items);
+  pintar();
+}
+function limpiar() {
+  items = [];
+  valor_x = 0;
+  valor_y = 0;
+  y = 0;
+  x = 0;
+  last_color = " ";
+  color = " ";
+  other_color = " ";
+}
 
 function llenado() {
   //vertical
@@ -32,7 +57,7 @@ function recorrido() {
   let key = 0;
   for (let y = 0; y < valor_y; y++) {
     for (let x = 0; x < valor_x; x++) {
-     // console.log(y, x);
+      // console.log(y, x);
 
       if (x === 0 && color != " ") {
         let valor_arriba = items[y - 1][x];
@@ -82,14 +107,12 @@ function opciones(key, y, x) {
       break;
   }
 }
-console.table(items);
-
 function pintar() {
   let color_asignado = "";
-  let texto_celda ="";
+  let texto_celda = "";
   const tabla = document.querySelector("#contenido_tabla");
- // console.log(tabla);
-
+  tabla.innerHTML = "";
+  // console.log(tabla);
   for (let y = 0; y < valor_y; y++) {
     for (let x = 0; x < valor_x; x++) {
       switch (items[y][x]) {
@@ -104,11 +127,9 @@ function pintar() {
           break;
       }
       //imprimir la tabla
-      texto_celda += `<td style="background-color:${color_asignado}"> ____</td>`
+      texto_celda += `<td style="background-color:${color_asignado}"> ____</td>`;
     }
-    tabla.innerHTML +=`<tr>${texto_celda}</tr>`;
+    tabla.innerHTML += `<tr>${texto_celda}</tr>`;
     texto_celda = "";
   }
 }
-
-pintar();
