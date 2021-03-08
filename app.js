@@ -1,12 +1,11 @@
 var items = [];
-const valor_x = 10;
-const valor_y = 10;
+const valor_x = 3;
+const valor_y = 5;
 let y = 0;
 let x = 0;
 let last_color = " ";
 let color = " ";
 other_color = " ";
-sss
 llenado();
 
 function llenado() {
